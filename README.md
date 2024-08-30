@@ -23,3 +23,12 @@ considerations
 same position different element --> react destroys and removes from the DOM the initial element, its children including state. Tree might be rebuilt if children stays the same (state is reset)
 
 same position same element-->element would be kept including its children and also state. new props/attributes are passed if they change between renders. want to create a brand new component with new state then use the key props
+
+the key props helps us tell the diffing algorithm that an element is unique. it allows react to distinguish multiple component instances of the same component type from the other instances
+When a key stays the same across renders the element would be kept in the DOM even if the position in the tree changes eg using keys in lists
+If the key changes between renders the element would be destroyed and a new one created even if the position in the tree is the same as before eg using keys to reset state
+Use cases
+in lists (key stays the same between renders)
+using key prop to reset state (key changes between renders)
+If you need to reset state make sure your give the element a key and the key changes between renders
+summary: use key prop when you have multiple child elements of the same type
