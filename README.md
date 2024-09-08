@@ -32,3 +32,7 @@ in lists (key stays the same between renders)
 using key prop to reset state (key changes between renders)
 If you need to reset state make sure your give the element a key and the key changes between renders
 summary: use key prop when you have multiple child elements of the same type
+
+
+side effects are basically any interaction between a react component and the outside world. can also be thought of as a code that does something eg data fetching, subscription setup, setting timers or manually accessing the DOM
+Effects exists not just to run code at different lifecycle points but to keep a code synchronised with some external system
