@@ -36,3 +36,18 @@ summary: use key prop when you have multiple child elements of the same type
 
 side effects are basically any interaction between a react component and the outside world. can also be thought of as a code that does something eg data fetching, subscription setup, setting timers or manually accessing the DOM
 Effects exists not just to run code at different lifecycle points but to keep a code synchronised with some external system
+
+Effects exists not just to run code at different lifecycle points but to keep a code synchronised with some external system. event handlers are the preferred way of creating side effects.
+By default the effect runs after every pre-render. We can prevent that by passing in a dependency array.
+The use effects have a dependency array that runs every time a prop or state used inside the use effect changes.
+Each time one of the dependencies changes the effect will be executed again.
+Every state variable and prop used inside th euseffect MUST be included in the dependency array
+Clean up functions are run on re-renders and when the component unmounts.. They are optional
+
+**Runs on 2 different occasions:**
+-runs before the effect is executed again
+-after the component is unmounted
+Clean up functions are needed whenever the side effect keeps happening after the component has been pre-rendered or unmounted. Potential Clean ups eg Stop timers, cancel request,cancel subscription, remove listeners.
+
+we use a callback function when we want to update state based on the current state and also can be used to initialise state (lazy initial state)
+
