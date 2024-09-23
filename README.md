@@ -51,3 +51,10 @@ Clean up functions are needed whenever the side effect keeps happening after the
 
 we use a callback function when we want to update state based on the current state and also can be used to initialise state (lazy initial state)
 
+**UseRef hook:**
+used to create a ref...it is like a box that we can put any data that we want to preserve (persist data) between renders. I can write and read from the ref using the .current property
+**2 use cases:**
+Create variable to stay same between renders eg previous state, set timeouts
+-selecting and storing DOM elements
+-Refs are for data that are NOT rendered.
+DO NOT WRITE OR READ .CURRENT IN RENDER LOGIC(LIKE STATE) INSTEAD DO SO IN USEEFFECT HOOKS
