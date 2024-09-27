@@ -58,3 +58,8 @@ Create variable to stay same between renders eg previous state, set timeouts
 -selecting and storing DOM elements
 -Refs are for data that are NOT rendered.
 DO NOT WRITE OR READ .CURRENT IN RENDER LOGIC(LIKE STATE) INSTEAD DO SO IN USEEFFECT HOOKS
+
+**UseReducer hook:**
+Its is a more complex way of managing state when compared to the useState hooks. It is also used to manage related pieces of state. it need a reducer function that stores all the logic to update state. the reducer function also decouples the state logic from the component.
+A reducer must be a pure function with no side effects that takes the current state and action and returns the next state. The action is an object that describes how state should be updated. it contains an action  type and payload(basically input data)  property.
+State update is triggered but the dispatch function that the useReducer returns
