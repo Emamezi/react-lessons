@@ -63,3 +63,53 @@ DO NOT WRITE OR READ .CURRENT IN RENDER LOGIC(LIKE STATE) INSTEAD DO SO IN USEEF
 Its is a more complex way of managing state when compared to the useState hooks. It is also used to manage related pieces of state. it need a reducer function that stores all the logic to update state. the reducer function also decouples the state logic from the component.
 A reducer must be a pure function with no side effects that takes the current state and action and returns the next state. The action is an object that describes how state should be updated. it contains an action  type and payload(basically input data)  property.
 State update is triggered but the dispatch function that the useReducer returns
+
+**Routing-React-router
+Routing is simply matching different URL'S to different UI views
+
+SPA are web apps that are executed only on the client (web browser). The pages  are never reloaded
+
+:global() functions is usually used when we are working with classes from external sources
+We use nested routes when we want a part of the UI to be controlled by a part of the URL
+
+An index route is the default child route that is going to be matched if none of the other declared routes matches
+
+The Outlet component renders the matching child route with its respective component  from the parent Routes' component collection of Route components.
+
+For nested routes relative paths (cities)  are preferred and for top level routes absolute paths (/product) are preferred
+
+Storing state in the URL is an alternative to use state in some situations. it is an easy way to store state in a global space an accessible to all components. it is s also a good way to pass data between pages form one page to the next and makes it possible to bookmark and share page with exact UI the state had at the time.
+
+
+
+For storing state in the URL, we use two methods.
+
+1.) Params- pass data to the next page
+
+2.) Query String- store some global state that should be accessible everywhere
+
+to get data from the URL we use the useParams hook
+
+UseParams: lets me access the route parameters form the URL.
+
+useSearchParams: to access query string parameters from the URL.
+
+You can use programmatic navigation using the useNavigate hook. Eg submitting a form. it allows for the user to move to a new UI or route without clicking on any link
+
+Also the Navigate components can be thought of as a redirect
+
+<Route index element={<Navigate replace to="cities" />} />
+
+**Authentication**
+User Authentication setps:
+
+-Get users email and password from a form and check with an API end point
+
+-if correct, redirect to main application and sav euser object in state
+
+-Protect application from unauthorized access (users that are not logged in)
+
+
+
+
+
