@@ -109,7 +109,56 @@ User Authentication setps:
 
 -Protect application from unauthorized access (users that are not logged in)
 
+***Performance Optimisations***
+Performance Optimisation focus:
 
+-- Prevent wasted renders - memo, useMemo, useCallback, passing elements as children or regular prop
 
+-- Improve app speed and responsiveness- useMemo, useCallback, useTransition
 
+-- Reduce bundle size-fewer 3rd party packages, code splitting and lazy loading
+
+Component instance only get re-rendered in 3 different situations
+
+state changes
+
+context in which component subscribe to changes
+
+parent re-renders
+
+A render does not mean that the DOM is updated. It just means that the component function gets called and is usually and expensive operation.
+
+A wasted render is a render that did not produce any change in the DOM
+
+Components passed as children do not re-render since they are just props.
+
+**Memoization** is an optimisation technique that executes a pure function once and saves the result in memory. trying to execute the function again with the same arguments as before the previously saved result will be returned without the function being executed again
+
+components-memo
+
+objects-useMeo
+
+functions-useCallback
+
+We can use the memo function to create a component that will not re-render when it's parent component re-renders as long as the passed props stays the same between renders.
+
+Memoizing a component only really affect props. Means a memoised component will still re-render when it's own state changes or context in which it is subscribed to changes.
+
+For memo to make semse on a component it should do so frequently and also does so witht he same props. if the props update, then the memoised component re-renders and is of no use
+
+In react everything is re-created on every render (objects and functions). With that in mind, functions or objects that are passed as props to child component would also be created on as new props on each re-render. And hence, memo will not work because the props are different in memory. Remember, for memo to work effectively as a performance optimisation technique, the props should stay same between re-render
+
+Solution: we memoised objects and functions to make them stable (preserve) between renders using useMemo and useCallbacks.
+
+Values passed into the useMemo or useCallbacks would be cached in memory and returned on subsequent re-renders as long as the dependencies (inputs) stays the same. The useMemo and useCallbacks have a dependency array like useEffect. Whenever one of the dependency changes the value will be recreated.
+
+**Use cases:**
+
+- prevent wasted re-renders (used together with memo)
+
+- avoid expensive calculations on every re-render e.g expensive derived state
+
+- values that are used in the dependency array of another hook
+
+useMemo caches (memoize) a value or a result while useCallback caches/ memoize a function
 
