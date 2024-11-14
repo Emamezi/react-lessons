@@ -162,3 +162,52 @@ Values passed into the useMemo or useCallbacks would be cached in memory and ret
 
 useMemo caches (memoize) a value or a result while useCallback caches/ memoize a function
 
+state setter functions are automatically memoised. This is a valid reason to omit them from the dependency array of the hooks -useEffect, useCallback, useMemo.
+
+Context can be optimised only if these 3 things are true
+-state in the context need to change all the time
+-contextt has many consumers
+-App is slow or laggy
+
+
+Bundle is simply a JS file that contains the entire application code. Downloading the bundle will load the entire app at once. Bundle size is the most important thing we need to optimise, because the bundle size ia the amount of JS users have to download to start using the app. A most efficient way to reduce bundle size is code splitting into multiple parts (Lazy Loading)... splitting bundle into multiple files that can be downloaded over time
+
+The most common lazy loading technique is to split the code at the route level(page level)
+
+It is always better to have one effect for each side effect you want to have in the code
+
+In JS a closure means that a function captures all the variables from its lexical scope (from the place that is was defined at the time the function was created).
+
+Definition of stale closure: Stale closure is the referencing towards an outdated variable in between renders.
+
+***REDUX****
+The goal of the reducer is to calculate the next state based on the current state and received action. No side effects or async operations allowed in the reducer
+Actions creators are really just function that return actions. It is not a redux thing but really a conventional approach to writing redux code
+Reducers need to be pure functions with no side effects. therefore no async operations in a reducer or the store. We make use of a redux middleware--> Thunks
+
+A middleware is a functions that sits between the dispatch action and the store. it allows us to run code after dispatching but before reaching the reducer in the store.
+
+the middleware is a perfect place for side effects (setting timers, fetching data, logging, asynchronous code etc)
+
+Steps for using middleware
+
+1)install middleware
+
+2)apply it to the store
+
+3)Use middleware in action creator functions
+
+When using thunks, instead of returning an action object in the action creators function we return a new function
+
+**REACT ROUTER V6***** DATALOADINF FEATURE
+The  <Outlet/> component of react router tell the root route where we want to render it child routes.
+With useEffect we used a fetch on render approach ( render fetch and then start fetching data). It creates data loading waterfalls.....while with loader in react-router-v6, we use a render on fetch approach (render as you fetch the data)
+
+Best was of reusing tailwind css styles is not with @apply but with react components
+
+Redux by nature is synchronous and we cannot call an async code in a reducer therefore we have to make use of thunks. Thunk is a middleware that sits between the dispatching and the reducer itself. it does something to the dispatch action before updating the store
+
+In react router, if i want to fetch data without actually navigation to a page i can use the useFetcher hook (fetch data without navigation). It also used for fetching data from another route i.e data that is not associated with the current page
+Using replace in navigation is typically used when you don't want the user to navigate back to the previous route after a navigation action eg submitting a form,, logging in, error page etc.
+
+It allows you navigate without pushing a new entry into the history stack which affects the browsers back behaviour.  The current URL is replaced with the new one, and the user cannot hit the "Back" button to go back to the previous URL.
