@@ -211,3 +211,43 @@ In react router, if i want to fetch data without actually navigation to a page i
 Using replace in navigation is typically used when you don't want the user to navigate back to the previous route after a navigation action eg submitting a form,, logging in, error page etc.
 
 It allows you navigate without pushing a new entry into the history stack which affects the browsers back behaviour.  The current URL is replaced with the new one, and the user cannot hit the "Back" button to go back to the previous URL.
+
+React Query;
+
+Used for managing remote (server) state. all remote state (data) is cached ie data is stored in other to be reused in other areas of the application. It also re-fetches the data in certain situations to keep state synced. Also pre-fetches data eg for pagination. Also offline support using the cached data.
+
+
+
+Note: Remote state is fundamentally different from UI state.
+
+In react query after mutations data is refetched but not automatically. The best way to do that is to invalidate the data in the stored cache as soon as the mutation is done, that way react query knows that the data has changed and then refetches the data from the remote server
+
+
+
+ const { mutate, isPending } = useMutation({
+    mutationFn: deleteCabin,
+    onSuccess: () => {
+      toast.success("Cabin successfully deleted");
+      queryClient.invalidateQueries({ queryKey: ["cabins"] });
+    },
+    onError: (error) => toast.error(error.message),
+  });
+*****Advanced React Patterns******
+  Components Reusability:
+
+Another way of making components reusable asides from passing in props or children is using the render props pattern. What happens in this case is to pass in a render prop to the component that needs to be reused. The render prop takes in a function that renders JSX syntax /Element in the way two similar component can have two different render props but still share the same logic.
+
+The component itself does not render anything besides the render prop. Instead, the component simply calls the render prop, instead of implementing its own rendering logic.
+
+A HOC is a component that takes in another component and returns a new component that is a better or enhanced component of the initial component
+Compound component pattern is creating a set of related components that together achieve a  useful component.
+
+steps:
+
+-create context
+
+-create parent component
+
+-create child components that help implementing the common task of the compound component
+
+-add child component as properties to the parent component (optional)
